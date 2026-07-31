@@ -9,7 +9,7 @@ A dependency-free web app for creating custom pride-flag heart PNGs with transpa
 - Native full-spectrum RGB color picker
 - Editable six-digit hex values
 - Standard pride color palette
-- Rainbow, transgender, bisexual, pansexual, nonbinary, and seven-stripe sunset lesbian starter presets
+- Rainbow, transgender, bisexual, pansexual, nonbinary, and five-stripe sunset lesbian starter presets
 - Append multiple flag presets to combine their complete stripe designs
 - Switch between left-to-right vertical stripes and top-to-bottom horizontal stripes
 - Equal geometric stripe sizing across the visible heart bounds, including the outside bands

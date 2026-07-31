@@ -21,7 +21,7 @@ const PRESETS = {
   bisexual: ["#D60270", "#D60270", "#9B4F96", "#0038A8", "#0038A8"],
   pansexual: ["#FF218C", "#FFD800", "#21B1FF"],
   nonbinary: ["#FFF430", "#FFFFFF", "#9C59D1", "#000000"],
-  sunsetLesbian: ["#D52D00", "#EF7627", "#FF9A56", "#FFFFFF", "#D162A4", "#B55690", "#A30262"]
+  sunsetLesbian: ["#D52D00", "#FF9A56", "#FFFFFF", "#D362A4", "#A30262"]
 };
 
 const PRESET_LABELS = {
