@@ -23,6 +23,23 @@ const PRESETS = {
   nonbinary: ["#FFF430", "#FFFFFF", "#9C59D1", "#000000"]
 };
 
+const PRESET_LABELS = {
+  rainbow: "Rainbow",
+  transgender: "Trans",
+  bisexual: "Bi",
+  pansexual: "Pan",
+  nonbinary: "Nonbinary"
+};
+
+// Approximate visible bounds of the heart path. Laying stripes out inside these
+// bounds keeps the clipped outside bands the same geometric size as inner bands.
+const HEART_BOUNDS = {
+  left: 113,
+  right: 911,
+  top: 112,
+  bottom: 884
+};
+
 const state = {
   stripes: PRESETS.rainbow.map(makeStripe),
   orientation: "vertical",
@@ -65,18 +82,22 @@ function heartPath(context, size = 1024) {
 }
 
 function drawStripes() {
-  const dimension = state.orientation === "vertical" ? canvas.width : canvas.height;
+  const startEdge = state.orientation === "vertical" ? HEART_BOUNDS.left : HEART_BOUNDS.top;
+  const endEdge = state.orientation === "vertical" ? HEART_BOUNDS.right : HEART_BOUNDS.bottom;
+  const dimension = endEdge - startEdge;
   const stripeSize = dimension / state.stripes.length;
 
   state.stripes.forEach((stripe, index) => {
-    const start = Math.floor(index * stripeSize);
-    const end = Math.ceil((index + 1) * stripeSize);
+    const start = startEdge + index * stripeSize;
+    const end = index === state.stripes.length - 1
+      ? endEdge
+      : startEdge + (index + 1) * stripeSize;
     ctx.fillStyle = stripe.hex;
 
     if (state.orientation === "vertical") {
-      ctx.fillRect(start, 0, end - start, canvas.height);
+      ctx.fillRect(start, 0, end - start + .5, canvas.height);
     } else {
-      ctx.fillRect(0, start, canvas.width, end - start);
+      ctx.fillRect(0, start, canvas.width, end - start + .5);
     }
   });
 }
@@ -208,7 +229,16 @@ function loadPreset(name) {
   state.stripes = colors.map(makeStripe);
   renderStripeEditor();
   renderHeart();
-  flashStatus(`${name[0].toUpperCase()}${name.slice(1)} colors loaded.`);
+  flashStatus(`${PRESET_LABELS[name]} colors loaded.`);
+}
+
+function appendPreset(name) {
+  const colors = PRESETS[name];
+  if (!colors) return;
+  state.stripes.push(...colors.map(makeStripe));
+  renderStripeEditor();
+  renderHeart();
+  flashStatus(`${PRESET_LABELS[name]} stripes added.`);
 }
 
 function updateSummary() {
@@ -275,6 +305,9 @@ document.querySelectorAll("[data-orientation]").forEach(button => {
 });
 
 document.getElementById("addCustomStripe").addEventListener("click", () => addStripe("#E40303"));
+document.getElementById("addPresetStripes").addEventListener("click", () => {
+  appendPreset(document.getElementById("presetToAdd").value);
+});
 document.getElementById("glossToggle").addEventListener("change", event => {
   state.gloss = event.target.checked;
   renderHeart();

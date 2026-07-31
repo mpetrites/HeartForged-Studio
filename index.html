@@ -30,12 +30,30 @@
             <span id="selectionCount" class="counter">6 stripes</span>
           </div>
 
-          <div class="preset-row" aria-label="Pride flag presets">
+          <h3 class="subheading">Start with a flag</h3>
+          <div class="preset-row" aria-label="Replace stripes with a pride flag preset">
             <button type="button" data-preset="rainbow">Rainbow</button>
             <button type="button" data-preset="transgender">Trans</button>
             <button type="button" data-preset="bisexual">Bi</button>
             <button type="button" data-preset="pansexual">Pan</button>
             <button type="button" data-preset="nonbinary">Nonbinary</button>
+          </div>
+
+          <div class="combine-flags">
+            <label for="presetToAdd">
+              <strong>Combine another flag</strong>
+              <small>Append every stripe from a pride flag to your current design.</small>
+            </label>
+            <div class="append-preset-controls">
+              <select id="presetToAdd" aria-label="Pride flag stripes to add">
+                <option value="rainbow">Rainbow</option>
+                <option value="transgender">Trans</option>
+                <option value="bisexual">Bi</option>
+                <option value="pansexual">Pan</option>
+                <option value="nonbinary">Nonbinary</option>
+              </select>
+              <button id="addPresetStripes" class="small-button" type="button">+ Add flag stripes</button>
+            </div>
           </div>
 
           <h3 class="subheading">Standard pride colors</h3>
@@ -58,7 +76,7 @@
               <h3 class="subheading">Individual stripes</h3>
               <p class="hint">Every stripe is equal size. Use the color field for the full RGB spectrum or enter a hex value.</p>
             </div>
-            <button id="addCustomStripe" class="small-button" type="button">+ Add stripe</button>
+            <button id="addCustomStripe" class="small-button" type="button">+ Custom stripe</button>
           </div>
           <div id="stripeEditor" class="stripe-editor"></div>
         </section>

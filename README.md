@@ -10,7 +10,9 @@ A dependency-free web app for creating custom pride-flag heart PNGs with transpa
 - Editable six-digit hex values
 - Standard pride color palette
 - Rainbow, transgender, bisexual, pansexual, and nonbinary starter presets
+- Append multiple flag presets to combine their complete stripe designs
 - Switch between left-to-right vertical stripes and top-to-bottom horizontal stripes
+- Equal geometric stripe sizing across the visible heart bounds, including the outside bands
 - Reorder, duplicate, add, and remove stripes
 - Optional gloss
 - 1024×1024 transparent PNG export
