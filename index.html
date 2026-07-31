@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fff7fa" />
+  <meta name="description" content="Combine heart colors into a custom transparent PNG." />
+  <title>Heartforged — Heart Fusion Studio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="hero">
+      <div class="brand-mark" aria-hidden="true">♥</div>
+      <div>
+        <p class="eyebrow">Heartforged Studio</p>
+        <h1>Forge one heart from many.</h1>
+        <p class="subtitle">Create custom pride-flag hearts with any number of equal vertical or horizontal stripes, then export a transparent PNG.</p>
+      </div>
+    </header>
+
+    <section class="workspace" aria-label="Heart generator">
+      <div class="controls panel">
+        <section>
+          <div class="section-heading">
+            <div>
+              <p class="step">Step 1</p>
+              <h2>Build your stripes</h2>
+            </div>
+            <span id="selectionCount" class="counter">6 stripes</span>
+          </div>
+
+          <div class="preset-row" aria-label="Pride flag presets">
+            <button type="button" data-preset="rainbow">Rainbow</button>
+            <button type="button" data-preset="transgender">Trans</button>
+            <button type="button" data-preset="bisexual">Bi</button>
+            <button type="button" data-preset="pansexual">Pan</button>
+            <button type="button" data-preset="nonbinary">Nonbinary</button>
+          </div>
+
+          <h3 class="subheading">Standard pride colors</h3>
+          <div id="pridePalette" class="pride-palette" role="group" aria-label="Standard pride colors"></div>
+
+          <h3 class="subheading">Stripe direction</h3>
+          <div class="orientation-picker" role="radiogroup" aria-label="Stripe direction">
+            <button type="button" class="orientation-button" data-orientation="vertical" role="radio" aria-checked="true">
+              <span class="orientation-icon vertical-icon" aria-hidden="true"></span>
+              <span><strong>Vertical</strong><small>Left to right</small></span>
+            </button>
+            <button type="button" class="orientation-button" data-orientation="horizontal" role="radio" aria-checked="false">
+              <span class="orientation-icon horizontal-icon" aria-hidden="true"></span>
+              <span><strong>Horizontal</strong><small>Top to bottom</small></span>
+            </button>
+          </div>
+
+          <div class="stripe-editor-heading">
+            <div>
+              <h3 class="subheading">Individual stripes</h3>
+              <p class="hint">Every stripe is equal size. Use the color field for the full RGB spectrum or enter a hex value.</p>
+            </div>
+            <button id="addCustomStripe" class="small-button" type="button">+ Add stripe</button>
+          </div>
+          <div id="stripeEditor" class="stripe-editor"></div>
+        </section>
+
+        <section>
+          <div class="section-heading compact">
+            <div>
+              <p class="step">Optional</p>
+              <h2>Finish</h2>
+            </div>
+          </div>
+          <label class="toggle-row">
+            <span>
+              <strong>Gloss highlight</strong>
+              <small>Add a soft reflective shine.</small>
+            </span>
+            <input id="glossToggle" type="checkbox" />
+          </label>
+        </section>
+      </div>
+
+      <div class="preview-panel panel">
+        <div class="section-heading">
+          <div>
+            <p class="step">Preview</p>
+            <h2>Your fused heart</h2>
+          </div>
+
+        </div>
+
+        <div class="canvas-frame">
+          <div class="checkerboard" aria-hidden="true"></div>
+          <canvas id="heartCanvas" width="1024" height="1024" aria-label="Generated heart preview"></canvas>
+        </div>
+
+        <p id="stripeOrderHint" class="stripe-order-hint">Stripe order runs left to right. All stripes are rendered at equal width.</p>
+        <div class="selected-summary" id="selectedSummary" aria-live="polite"></div>
+
+        <div class="actions">
+          <button id="downloadButton" class="primary-button" type="button">Download transparent PNG</button>
+          <button id="resetButton" class="secondary-button" type="button">Reset</button>
+        </div>
+        <p id="status" class="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <footer>
+      <span>Open-source, browser-only, and private by design.</span>
+      <a href="https://github.com/" target="_blank" rel="noreferrer">View source</a>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
