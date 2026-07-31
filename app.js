@@ -285,11 +285,28 @@ function flashStatus(message) {
 }
 
 function downloadPng() {
-  const link = document.createElement("a");
-  link.download = `heartforged-${state.orientation}-${state.stripes.length}-stripe-heart.png`;
-  link.href = canvas.toDataURL("image/png");
-  link.click();
-  flashStatus("Transparent PNG downloaded.");
+  const filename = `heartforged-${state.orientation}-${state.stripes.length}-stripe-heart.png`;
+  flashStatus("Preparing transparent PNG…");
+
+  canvas.toBlob(blob => {
+    if (!blob) {
+      flashStatus("Could not create the PNG. Please try again.");
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.download = filename;
+    link.href = objectUrl;
+    link.hidden = true;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    // Keep the object URL alive long enough for browsers to start reading it.
+    setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+    flashStatus("Transparent PNG downloaded.");
+  }, "image/png");
 }
 
 function reset() {
